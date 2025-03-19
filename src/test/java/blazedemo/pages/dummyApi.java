@@ -51,7 +51,7 @@ public class dummyApi {
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .when()
-                .put("user/" + userId)
+                .put()
                 .then()
                 .extract()
                 .response();
