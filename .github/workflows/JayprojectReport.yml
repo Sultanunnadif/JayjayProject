@@ -56,7 +56,3 @@ jobs:
       with: 
           Name: Jayproject Reports
           path: target/cucumber-reports.html
-    
-    #Bonus track step-report
-    - name: Debug - List Files
-      run: ls -R reports
