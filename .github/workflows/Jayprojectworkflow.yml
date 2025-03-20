@@ -32,9 +32,9 @@ jobs:
         version: 'latest' #stable, beta, latest
         #chrome-options: '--no-sandbox --disable-gpu --headless --disable-dev-shm-usage'
 
-    #Setup Gradlew
+    #Setup Gradle
     - name: run gradle
-      run: chmod +x gradlew
+      run: chmod +x gradle
 
     #run Gradle
     - name: run gradle
