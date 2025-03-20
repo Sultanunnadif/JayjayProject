@@ -33,6 +33,17 @@ public class dummyApi {
 
         return response;
     }
+    public Response IDResponsewithoutID(){
+        response = given()
+                .header("app-id", "63a804408eb0cb069b57e43a")
+                .when()
+                .get()
+                .then()
+                .extract()
+                .response();
+
+        return response;
+    }
     public static Response sendPostRequest(String requestBody){
         response = given()
                 .header("app-id", "63a804408eb0cb069b57e43a")
@@ -52,6 +63,16 @@ public class dummyApi {
                 .body(requestBody)
                 .when()
                 .put()
+                .then()
+                .extract()
+                .response();
+        return response;
+    }
+    public static Response deleteUser(String userId) {
+        response = given()
+                .header("app-id", "63a804408eb0cb069b57e43a") // Your API key
+                .when()
+                .delete()
                 .then()
                 .extract()
                 .response();

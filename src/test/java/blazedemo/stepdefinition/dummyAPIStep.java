@@ -41,9 +41,16 @@ public class dummyAPIStep {
             respondBody = response.getBody().asString();
             Assert.assertTrue(respondBody.contains(expectedResult));
         }
+
         @When("method get specific user ID")
         public void methodGetSpecificUserID() {
             response = dummyApipage.IDResponse();
+            System.out.println(response.getBody().asString());
+        }
+
+        @When("method get specific user ID without appId")
+        public void methodGetSpecificUserIDFalse() {
+            response = dummyApipage.IDResponsewithoutID();
             System.out.println(response.getBody().asString());
         }
 
@@ -81,12 +88,31 @@ public class dummyAPIStep {
     @When("user send put request")
     public void userSendPutRequest() {
         if (createdUserId != null) {
-            //buat Debugg
-            System.out.println("Final PUT Endpoint: " + RestAssured.baseURI);
             response = dummyApi.updateUser(createdUserId, respondBody);
         } else {
             //buat debugg
             System.out.println("No valid user ID");
         }
+    }
+
+    @Given("setting delete endpoint {string}")
+    public void settingDeleteEndPoint(String endpoint) {
+        if (createdUserId != null) {
+            String updatedEndpoint = endpoint.replace("{createdUserId}", createdUserId);
+            dummyApipage.setEndpoint(updatedEndpoint);
+        } else {
+            System.out.println("No valid user ID");
+        }
+    }
+
+    @When("user send delete request")
+    public void userSendDeleteRequest() {
+            if (createdUserId != null) {
+                //buat Debugg
+                System.out.println("Final PUT Endpoint: " + RestAssured.baseURI);
+                response = dummyApi.deleteUser(createdUserId);
+            }else {
+                System.out.println("No valid user ID");
+            }
     }
 }
