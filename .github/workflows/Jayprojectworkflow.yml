@@ -36,10 +36,6 @@ jobs:
     - name: run gradle
       run: chmod +x gradle
 
-    #run Gradle
-    - name: run gradle
-      run: ./gradle build
-
     #run gradle clean test
     - name: run clean test
       run: ./gradle clean test
@@ -50,7 +46,7 @@ jobs:
       if: always() #always() # success() , failure(), canceled()
       with: 
           Name: JUnit4 Reports
-          path: target/cucumber-report.html
+          path: target/cucumber-reports.html
     
     #Bonus track step-report
     - name: Debug - List Files
