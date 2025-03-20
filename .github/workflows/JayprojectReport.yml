@@ -1,0 +1,62 @@
+name: StepRunner
+
+#Triger / Kapan Action-nya jalan
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  AutomationStep:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    #Download Code dari Repo
+    - uses: actions/checkout@v4
+    
+    #Setup Java
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    #install Browser
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1.7.3
+      with:
+        version: 'latest' #stable, beta, latest
+        #chrome-options: '--no-sandbox --disable-gpu --headless --disable-dev-shm-usage'
+
+    #Setup Gradlew
+    - name: run gradle
+      run: chmod +x gradlew
+
+    #run Gradlew
+    - name: run gradlew
+      run: ./gradlew build
+
+    #run gradlew clean test
+    - name: run clean test
+      run: ./gradlew clean test
+
+    #hasil Test-Result
+    - name: Archive Report
+      uses: actions/upload-artifact@v4.3.0
+      if: always() #always() # success() , failure(), canceled()
+      with: 
+          Name: Jayproject Reports
+          path: target/cucumber-reports.html
+    
+    #Bonus track step-report
+    - name: Debug - List Files
+      run: ls -R reports
