@@ -5,7 +5,13 @@ Feature: BlazeDemo
     When user select a phone samsung galaxy
     Then user should see the samsung description
     And user add to chart
-    And user should see message "Product added"
+    Then user should see message "Product added"
+    When user click on cart
+    Then user should see the product in the cart
+    And user click on place order
+    Then user fill the form
+    And user click on purchase
+    Then user should see the purchase message "Thank you for your purchase!"
 
   Scenario: Sign Up
     Given user is on the BlazeDemo page

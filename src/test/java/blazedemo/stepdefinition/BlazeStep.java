@@ -25,9 +25,34 @@ public class BlazeStep extends BaseDriver {
         webpages.userAddToChart();
     }
 
-    @And("user should see message {string}")
+    @Then("user should see message {string}")
     public void userShouldSeeMessage(String message) {
         webpages.Message(message);
+    }
+
+    @When("user click on cart")
+    public void userClickOnCart() {
+        webpages.chart();
+    }
+
+    @And("user click on place order")
+    public void userClickOnPlaceOrder() {
+        webpages.placeOrder();
+    }
+
+    @Then("user fill the form")
+    public void userFillTheForm() {
+        webpages.fillingForm();
+    }
+
+    @And("user click on purchase")
+    public void userClickOnPurchase() {
+        webpages.purchaseButton();
+    }
+
+    @Then("user should see the purchase message {string}")
+    public void userShouldSeeThePurchaseMessage(String finishMessage) {
+        webpages.finishOrder(finishMessage);
     }
 
     @When("user click on Sign Up")

@@ -11,4 +11,9 @@ public class BlazeDesc extends BaseDriver {
         descPage = new BlazeDescPage(driver);
         descPage.validateProductDescription();
     }
+    @Then("user should see the product in the cart")
+    public void userShouldSeeTheProductInTheCart() {
+        descPage = new BlazeDescPage(driver);
+        descPage.validatecartproduct();
+    }
 }
